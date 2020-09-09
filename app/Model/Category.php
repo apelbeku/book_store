@@ -9,4 +9,9 @@ class Category extends Model
     public $fillable = [
     	'name',
     ];
+
+    public function Book()
+    {
+    	return $this->hasMany('App\Model\Book');
+    }
 }
