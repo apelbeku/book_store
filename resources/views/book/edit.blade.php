@@ -44,23 +44,23 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="Name" class="col-form-label">Name</label>
-                                                <input id="Name" type="text" class="form-control" name="name">
+                                                <input id="Name" type="text" class="form-control" name="name" value="{{ old('name', $books->name) }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="category_id" class="col-form-label">Category</label>
                                                 <select class="selectpicker form-control" name="category_id">
                                                     @foreach($categories as $category)
-                                                    <option value="{{$category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" {{ old('category_id', $books->category_id == $category->id ? 'selected' : '') }}>{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="Price" class="col-form-label">Price</label>
-                                                <input id="Price" type="number" class="form-control" name="price">
+                                                <input id="Price" type="number" class="form-control" name="price" value="{{ old('price', $books->price) }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="Code Book" class="col-form-label">Code Book</label>
-                                                <input id="Code Book" type="text" class="form-control" name="code_book">
+                                                <input id="Code Book" type="text" class="form-control" name="code_book" value="{{ old('code_book', $books->code_book) }}">
                                             </div>
                                             <button class="btn btn-outline-primary btn-sm mt-4">Submit</button>
                                         </form>

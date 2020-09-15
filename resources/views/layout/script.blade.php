@@ -18,3 +18,4 @@
     <script src="/concept/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="/concept/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="/concept/assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>

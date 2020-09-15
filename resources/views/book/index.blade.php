@@ -79,9 +79,9 @@
                                                                         <td>{{ $book->price }}</td>
                                                                         <td>{{ $book->code_book }}</td>
                                                                         <td class="d-flex inline-block justify-content-around">
-                                                                            <a href="#" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                                            <form action="" method="POST">
-                                                                                @csrf
+                                                                            <a href="{{ route('book.edit', ['id'=>$book->id]) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                                                            <form action="{{ route('book.delete', ['id'=>$book->id]) }}" method="POST">
+                                                                                @csrf @method('DELETE')
                                                                                 <button class="btn btn-outline-danger btn-sm">Delete</button>
                                                                             </form>
                                                                         </td>

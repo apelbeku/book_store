@@ -33,8 +33,10 @@ class BookController extends Controller
     public function create()
     {
         $this->books;
+        $books = Book::all();
+        $categories = Category::all();
 
-        return view('/book.create');
+        return view('/book.create', compact('books', 'categories'));
     }
 
     /**
@@ -45,13 +47,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $this->books;
-        $book = new $this->books();
-        $book->name = $request->name;
-        $book->category_id = $request->cateogry_id;
-        $book->price = $request->price;
-        $book->code_book = $request->code_book;
-        $book->save();
+        $this->books->create($request->all());
 
         return redirect('/book');
     }
@@ -75,7 +71,11 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->books;
+        $books = $this->books::find($id);
+        $categories = Category::all();
+
+        return view('/book.edit', compact('books', 'categories'));
     }
 
     /**
@@ -87,7 +87,15 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->books;
+        $books = $this->books->find($id);
+        $books->name = $request->name;
+        $books->category_id = $request->category_id;
+        $books->price = $request->price;
+        $books->book_code = $request->code_book;
+        $books->save();
+
+        return redirect('/book');
     }
 
     /**
@@ -98,6 +106,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = $this->books->find($id);
+        $book->delete();
+
+        return redirect('/book');
     }
 }

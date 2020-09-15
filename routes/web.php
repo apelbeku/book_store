@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 			Route::post('/store', 'BookController@store')->name('store');
 			Route::get('/edit/{id}', 'BookController@edit')->name('edit');
 			Route::post('/edit/{id}', 'BookController@update')->name('update');
-			Route::delete('/delete/{id}', 'BookController@destoy')->name('delete');
+			Route::delete('/delete/{id}', 'BookController@destroy')->name('delete');
 		});
 
 		Route::prefix('/category')->name('category.')->group(function () {
