@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Order;
 use App\Model\Category;
+use App\Model\Book;
 
-class CategoryController extends Controller
+class OrderController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-        $this->categories = new Category();
+        $this->orders = new Order();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +21,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categories->orderBy('created_at', 'desc')->get();
+        $this->orders;
+        $orders = $this->orders::orderBy('created_at', 'desc')->get();
 
-        return view('/category.index', compact('categories'));
+        return view('/order.index', compact('orders'));
     }
 
     /**
@@ -30,10 +34,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $this->categories;
-        $categories = Category::all();
+        $books = Book::all();
 
-        return view('/category.create', compact('categories'));
+        return view('/order.forms', compact('books'));
     }
 
     /**
@@ -44,12 +47,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->categories;
-        $categories = new Category();
-        $categories->name = $request->name;
-        $categories->save();
+        $books = $this->Book::create(request::all());
 
-        return redirect('/category');
+        return redirect('/order');
     }
 
     /**
@@ -71,9 +71,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = $this->categories->find($id);
+        $this->orders;
+        $orders = $this->orders::with('order_details')->find($id);
+        $books = Book::all();
 
-        return view('/category.edit', compact('categories'));
+        return view('/order.forms', compact('books', 'orders'));
     }
 
     /**
@@ -85,12 +87,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->categories;
-        $categories = $this->categories->find($id);
-        $categories->name = $request->name;
-        $categories->save();
+        $this->orders;
+        $orders->customer_name = $request->customer_name;
+        $orders->book_id = $request->book_id;
+        $orders->qty = $request->qty;
+        $orders->subtotal = $request->subtotal;
+        $orders->price = $request->price;
+        $orders->save();
 
-        return redirect('/category');
+        return redirect('/order');
     }
 
     /**
@@ -101,9 +106,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories = $this->categories->find($id);
-        $categories->delete();
+        $orders = $this->order::find(id);
+        $orders->delete();
 
-        return redirect('category');
+        return view('/order');
     }
 }
